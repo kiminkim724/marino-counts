@@ -8,6 +8,18 @@ import pymongo
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+conn_str =  os.getenv('MONGODB_URI')
+
+# set a 5-second connection timeout
+client = pymongo.MongoClient(conn_str, serverSelectionTimeoutMS=5000)
+try:
+	print(client.server_info())
+except Exception:
+	print("Unable to connect to the server.")
+db = client["marinocount"]
+for n, name in names.items():
+	db[name].create_index("Date", unique = True)
 
 app = Flask(__name__)
 
@@ -82,21 +94,5 @@ def getAverage(location_id, day_id):
 			time_counts[hr] = res[0]["TotalAmount"]/res[0]["TotalCount"]
 	return jsonify(time_counts)
 
-def initDB():
-	global client, db
-	load_dotenv()
-	conn_str =  os.getenv('MONGODB_URI')
-
-	# set a 5-second connection timeout
-	client = pymongo.MongoClient(conn_str, serverSelectionTimeoutMS=5000)
-	try:
-		print(client.server_info())
-	except Exception:
-		print("Unable to connect to the server.")
-	db = client["marinocount"]
-	for n, name in names.items():
-		db[name].create_index("Date", unique = True)
-
 if __name__ == '__main__':
-	initDB()
 	app.run()
