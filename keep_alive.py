@@ -8,6 +8,16 @@ import pymongo
 import os
 from dotenv import load_dotenv
 
+
+names = {
+	"1": "Marino Center - 2nd Floor", 
+	"2": "Marino Center - 3rd Floor Select & Cardio", 
+	"3": "Marino Center - 3rd Floor Weight Room",
+	"4": "Marino Center - Gymnasium", 
+	"5": "Marino Center - Track", 
+	"6": "SquashBusters - 4th Floor"
+}
+
 load_dotenv()
 conn_str =  os.getenv('MONGODB_URI')
 
@@ -23,14 +33,6 @@ for n, name in names.items():
 
 app = Flask(__name__)
 
-names = {
-	"1": "Marino Center - 2nd Floor", 
-	"2": "Marino Center - 3rd Floor Select & Cardio", 
-	"3": "Marino Center - 3rd Floor Weight Room",
-	"4": "Marino Center - Gymnasium", 
-	"5": "Marino Center - Track", 
-	"6": "SquashBusters - 4th Floor"
-}
 
 def dayNameFromWeekday(weekday):
     days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
