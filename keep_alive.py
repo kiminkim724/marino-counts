@@ -82,9 +82,6 @@ def getAverage(location_id, day_id):
 			time_counts[hr] = res[0]["TotalAmount"]/res[0]["TotalCount"]
 	return jsonify(time_counts)
 
-def run():
-    app.run(host='0.0.0.0',port=8080)
-
 def initDB():
 	global client, db
 	load_dotenv()
@@ -100,7 +97,7 @@ def initDB():
 	for n, name in names.items():
 		db[name].create_index("Date", unique = True)
 
-def keep_alive():
+
+if __name__ == '__main__':
 	initDB()
-	t = Thread(target=run)
-	t.start()
+	app.run()
