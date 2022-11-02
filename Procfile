@@ -1,1 +1,1 @@
-web: gunicorn marinotracker.py
+web: gunicorn keep_alive:app
