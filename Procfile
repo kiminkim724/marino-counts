@@ -1,1 +1,1 @@
-worker: python3 marinotracker.py
+web: gunicorn marinotracker.py
