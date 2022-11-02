@@ -1,2 +1,2 @@
-web: gunicorn keep_alive:app
+web: gunicorn marino_counts:app
 worker: python marinotracker.py
