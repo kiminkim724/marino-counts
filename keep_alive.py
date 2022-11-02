@@ -9,7 +9,7 @@ import os
 from dotenv import load_dotenv
 
 
-app = Flask('')
+app = Flask(__name__)
 
 names = {
 	"1": "Marino Center - 2nd Floor", 
@@ -96,7 +96,6 @@ def initDB():
 	db = client["marinocount"]
 	for n, name in names.items():
 		db[name].create_index("Date", unique = True)
-
 
 if __name__ == '__main__':
 	initDB()
