@@ -94,7 +94,7 @@ def getAverage(location_id, day_id):
 		res = list(col.aggregate(pipeline))
 		if res:
 			time_counts[hr] = res[0]["TotalAmount"]/res[0]["TotalCount"]
-	return jsonify(time_counts)
+	return jsonify(day, time_counts)
 
 if __name__ == '__main__':
 	app.run()
