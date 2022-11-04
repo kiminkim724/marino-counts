@@ -2,12 +2,10 @@ from collections import defaultdict
 import json
 from time import time
 from flask import Flask, request, jsonify
-from threading import Thread
 from datetime import datetime
 import pymongo
 import os
 from dotenv import load_dotenv
-
 
 names = {
 	"1": "Marino Center - 2nd Floor", 
@@ -41,6 +39,10 @@ def dayNameFromWeekday(weekday):
 @app.route('/')
 def home():
 	return "Hello. the bot is alive!"
+
+@app.route('/getNames', methods=['GET'])
+def getNames():
+	return jsonify(names)
 
 @app.route('/updateDB', methods=['POST'])
 def updateDB():
